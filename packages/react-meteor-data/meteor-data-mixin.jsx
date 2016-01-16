@@ -1,4 +1,8 @@
-ReactMeteorData = {
+var mm = require('meteor-standalone-minimongo');
+var LocalCollection = mm.LocalCollection;
+var Tracker = mm.Tracker;
+
+var ReactMeteorData = {
   componentWillMount() {
     this.data = {};
     this._meteorDataManager = new MeteorDataManager(this);
@@ -107,16 +111,14 @@ class MeteorDataManager {
       });
     });
 
-    if (Package.mongo && Package.mongo.Mongo) {
       Object.keys(data).forEach(function (key) {
-        if (data[key] instanceof Package.mongo.Mongo.Cursor) {
+        if (data[key] instanceof LocalCollection.Cursor) {
           console.warn(
   "Warning: you are returning a Mongo cursor from getMeteorData. This value " +
   "will not be reactive. You probably want to call `.fetch()` on the cursor " +
   "before returning it.");
         }
       });
-    }
 
     return data;
   }
@@ -147,3 +149,7 @@ class MeteorDataManager {
     this.oldData = newData;
   }
 }
+
+mm.ReactiveMixin = ReactMeteorData;
+
+module.exports = mm;

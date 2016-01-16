@@ -1,3 +1,4 @@
 *~
 .DS_Store
 .packages-to-republish.json
+node_modules/

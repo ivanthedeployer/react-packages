@@ -1,3 +1,16 @@
+"use strict";
+var _ = require('underscore');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var ReactMeteorData = require('./meteor-data-mixin-built.js');
+var Meteor = require('meteor-standalone-npm-shim');
+var Tinytest = require('meteor-standalone-npm-tinytest');
+var mm = require('meteor-standalone-minimongo'),
+    Tracker = mm.Tracker,
+    Mongo = {Collection: mm.LocalCollection},
+
+
+
 getInnerHtml = function (elem) {
   // clean up elem.innerHTML and strip data-reactid attributes too
   return canonicalizeHtml(elem.innerHTML).replace(/ data-reactid=".*?"/g, '');
@@ -292,3 +305,5 @@ Tinytest.add(
       console.warn = oldWarn;
     }
   });
+
+Tinytest.runNpm()

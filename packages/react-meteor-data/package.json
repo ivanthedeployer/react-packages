@@ -1,0 +1,35 @@
+{
+  "name": "meteor-standalone-react-mixin",
+  "version": "0.0.4",
+  "description": "MDG's meteor-react mixin moved to a standalone package for use in other frontends",
+  "main": "meteor-data-mixin-built.js",
+  "scripts": {
+    "test": "node meteor-tests-built.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanthedeployer/react-packages.git"
+  },
+  "author": "ivanthedeployer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivanthedeployer/react-packages/issues"
+  },
+  "homepage": "https://github.com/ivanthedeployer/react-packages#readme",
+  "dependencies": {
+    "babel-preset-react": "^6.3.13",
+    "meteor-standalone-minimongo": "0.0.13"
+  },
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-cli": "^6.4.0",
+    "babel-core": "^6.4.0",
+    "babel-preset-es2015": "^6.3.13",
+    "meteor-standalone-npm-shim": "0.0.4",
+    "meteor-standalone-npm-tinytest": "0.0.15",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "strict-mode": "^0.4.2",
+    "underscore": "^1.8.3"
+  }
+}
