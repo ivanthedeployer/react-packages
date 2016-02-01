@@ -145,7 +145,7 @@ function waitFor(func, callback) {
   });
 };
 
-testAsyncMulti('react-meteor-data - resubscribe', [
+Tinytest.add('react-meteor-data - resubscribe', [
   function (test, expect) {
     var self = this;
     self.div = document.createElement("DIV");

@@ -3,13 +3,13 @@ var LocalCollection = mm.LocalCollection;
 var Tracker = mm.Tracker;
 
 var ReactMeteorData = {
-  componentWillMount() {
+  componentWillMount: function() {
     this.data = {};
     this._meteorDataManager = new MeteorDataManager(this);
     const newData = this._meteorDataManager.calculateData();
     this._meteorDataManager.updateData(newData);
   },
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUpdate: function(nextProps, nextState) {
     const saveProps = this.props;
     const saveState = this.state;
     let newData;
@@ -31,7 +31,7 @@ var ReactMeteorData = {
 
     this._meteorDataManager.updateData(newData);
   },
-  componentWillUnmount() {
+  componentWillUnmount: function() {
     this._meteorDataManager.dispose();
   }
 };
@@ -150,6 +150,6 @@ class MeteorDataManager {
   }
 }
 
-mm.ReactiveMixin = ReactMeteorData;
+mm.ReactMeteorData = ReactMeteorData;
 
 module.exports = mm;

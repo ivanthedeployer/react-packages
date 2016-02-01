@@ -160,6 +160,6 @@ var MeteorDataManager = function () {
   return MeteorDataManager;
 }();
 
-mm.ReactiveMixin = ReactMeteorData;
+mm.ReactMeteorData = ReactMeteorData;
 
 module.exports = mm;
