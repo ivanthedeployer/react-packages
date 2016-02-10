@@ -151,5 +151,6 @@ class MeteorDataManager {
 }
 
 mm.ReactMeteorData = ReactMeteorData;
+mm.ReactiveDict = mm.ReactiveDict.ReactiveDict; // patch for consistency in using plugin
 
 module.exports = mm;
