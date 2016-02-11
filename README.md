@@ -14,10 +14,10 @@ npm install --save meteor-standalone-react-mixin
 
 ```
 // Import the mixin and MiniMongo collection constructor
-import { LocalCollection, MeteorDataMixin } from 'meteor-standalone-react-mixin'
+import { Mongo, MeteorDataMixin } from 'meteor-standalone-react-mixin'
 
 // Make a MiniMongo collection
-var Todos = new LocalCollection('todos');
+var Todos = new Mongo.Collection('todos');
 
 var MyReactClass = React.createClass({
     // Mixin your mixin
@@ -151,7 +151,7 @@ With a single, universally accessible Source Of Truth, we can keep the whole app
 
 ### Quick API
 
-The [Meteor Docs](http://docs.meteor.com/#/full/mongo_collection) are the best place to look for this, but your most common methods on `LocalCollection` will be `find`, `findOne` , `insert`, `remove`, and `update`;
+The [Meteor Docs](http://docs.meteor.com/#/full/mongo_collection) are the best place to look for this, but your most common methods on `Collection` will be `find`, `findOne` , `insert`, `remove`, and `update`;
 
 ```
 // Create a Todo
@@ -200,10 +200,10 @@ The [Meteor Docs](http://docs.meteor.com/#/full/mongo_collection) have more deta
 
 This package depends on, exposes, and uses the following from MDG:
 * `MeteorDataMixin`: Mixin for react classes that provides reactive context
-* `LocalCollection`: A reactive Collection for Minimongo
+* `Mongo.Collection`: A reactive Collection for Minimongo
 * `ReactiveDict`: A reactive dictionary for when you need more than a variable and less than a collection
 * `ReactiveVar`: The simplest unit of reactivity.  A single reactive variable.
-* `Minimongo`: Frontend database created by MDG.  Access its functionality through `LocalCollection`
+* `Minimongo`: Frontend database created by MDG.  Access its functionality through `Mongo.Collection`
 * `Tracker`: The engine behind all of this reactive programming.  A tiny, mindbending library worth exploring. [Docs here](https://www.meteor.com/tracker)
 * `EJSON`: Extended JSON format
 
@@ -216,7 +216,7 @@ Other reactive data sources:
 
 use `.get(...)` and `.set(...)` to take advantage of these
 
-Observe collections - You can pay attention to a `LocalCollection` query without the mixin.  
+Observe collections - You can pay attention to a `Mongo.Collection` query without the mixin.  
 ```
 app.Todos.find({createdAt: {$lte: aMonthAgo}, completed: false}).observeChanges({
     removed: function(_id, changes) {
@@ -231,7 +231,7 @@ In this case, when a `Todo` created over a month ago gets marked as complete, yo
 
 ### Documentation
 
-* [MiniMongo and LocalCollection](http://docs.meteor.com/#/full/mongo_collection)
+* [MiniMongo and Collection](http://docs.meteor.com/#/full/mongo_collection)
 * [Tracker](https://www.meteor.com/tracker)
 * [Mongo Query Syntax](https://docs.mongodb.org/manual/tutorial/query-documents/)
 * [React Documentation](http://facebook.github.io/react/docs/getting-started.html)

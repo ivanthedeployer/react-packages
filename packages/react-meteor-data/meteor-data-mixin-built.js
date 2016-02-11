@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -9,6 +9,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var mm = require('meteor-standalone-minimongo');
 var LocalCollection = mm.LocalCollection;
 var Tracker = mm.Tracker;
+
+// Aliases to make this work more like Documentation in meteor
+mm.ReactiveDict = mm.ReactiveDict.ReactiveDict;
+// Meteor docs show Mongo.Collection
+mm.Mongo = {
+  Collection: mm.LocalCollection,
+  MongoID: mm.MongoId
+};
+
+// Patch for Meteor.is_server function
+function isServer() {
+  return !(typeof window != 'undefined' && window.document);
+}
 
 var ReactMeteorData = {
   componentWillMount: function componentWillMount() {
@@ -57,7 +70,7 @@ var MeteorDataManager = function () {
   }
 
   _createClass(MeteorDataManager, [{
-    key: "dispose",
+    key: 'dispose',
     value: function dispose() {
       if (this.computation) {
         this.computation.stop();
@@ -65,7 +78,7 @@ var MeteorDataManager = function () {
       }
     }
   }, {
-    key: "calculateData",
+    key: 'calculateData',
     value: function calculateData() {
       var component = this.component;
 
@@ -75,7 +88,10 @@ var MeteorDataManager = function () {
 
       // When rendering on the server, we don't want to use the Tracker.
       // We only do the first rendering on the server so we can get the data right away
+      /* patched above
       if (Meteor.isServer) {
+      */
+      if (isServer()) {
         return component.getMeteorData();
       }
 
@@ -129,12 +145,12 @@ var MeteorDataManager = function () {
       return data;
     }
   }, {
-    key: "updateData",
+    key: 'updateData',
     value: function updateData(newData) {
       var component = this.component;
       var oldData = this.oldData;
 
-      if (!(newData && (typeof newData === "undefined" ? "undefined" : _typeof(newData)) === 'object')) {
+      if (!(newData && (typeof newData === 'undefined' ? 'undefined' : _typeof(newData)) === 'object')) {
         throw new Error("Expected object returned from getMeteorData");
       }
       // update componentData in place based on newData
@@ -161,5 +177,6 @@ var MeteorDataManager = function () {
 }();
 
 mm.ReactMeteorData = ReactMeteorData;
+mm.ReactiveDict = mm.ReactiveDict.ReactiveDict; // patch for consistency in using plugin
 
 module.exports = mm;

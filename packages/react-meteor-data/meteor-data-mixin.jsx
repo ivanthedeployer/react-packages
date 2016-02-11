@@ -2,6 +2,20 @@ var mm = require('meteor-standalone-minimongo');
 var LocalCollection = mm.LocalCollection;
 var Tracker = mm.Tracker;
 
+// Aliases to make this work more like Documentation in meteor
+mm.ReactiveDict = mm.ReactiveDict.ReactiveDict;
+// Meteor docs show Mongo.Collection
+mm.Mongo = {
+  Collection: mm.LocalCollection,
+  MongoID: mm.MongoId
+};
+
+// Patch for Meteor.is_server function
+function isServer() {
+   return ! (typeof window != 'undefined' && window.document);
+}
+
+
 var ReactMeteorData = {
   componentWillMount: function() {
     this.data = {};
@@ -61,9 +75,13 @@ class MeteorDataManager {
 
     // When rendering on the server, we don't want to use the Tracker.
     // We only do the first rendering on the server so we can get the data right away
+    /* patched above
     if (Meteor.isServer) {
+    */
+    if(isServer()){
       return component.getMeteorData();
     }
+
 
     if (this.computation) {
       this.computation.stop();

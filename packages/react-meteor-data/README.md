@@ -13,13 +13,17 @@ More complete docs available at the [example Todo repo](https://github.com/ivant
 ### Quick Example:
 
 ```
+import { Mongo, ReactMeteorData } from 'meteor-standalone-react-mixin'
+
+var Todos = new Mongo.Collection('todos');
+
 TodoApp = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     // Reactive context
     // do all your reactive data access in this method.
     return {
-      todos: app.Todos.find().fetch(),
+      todos: Todos.find().fetch(),
     };
     // /Reactive context
   },
@@ -31,12 +35,14 @@ TodoApp = React.createClass({
 });
 ```
 
-For more information, see [the guide](http://react-in-meteor.readthedocs.org/en/latest/meteor-data/).
+Full example in the [Todo Sample Application](https://github.com/ivanthedeployer/reactivetodo)
+
+[Meteor docs](http://react-in-meteor.readthedocs.org/en/latest/meteor-data/).
 
 
 ### API
 This package exposes: 
-* LocalCollection
+* Mongo.Collection
 * Minimongo
 * ReactiveDict
 * ReactiveVar
