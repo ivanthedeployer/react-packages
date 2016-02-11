@@ -1,6 +1,6 @@
 {
   "name": "meteor-standalone-react-mixin",
-  "version": "0.0.54",
+  "version": "0.0.56",
   "description": "MDG's meteor-react mixin moved to a standalone package for use in other frontends",
   "main": "meteor-data-mixin-built.js",
   "scripts": {

@@ -3,7 +3,6 @@ var LocalCollection = mm.LocalCollection;
 var Tracker = mm.Tracker;
 
 // Aliases to make this work more like Documentation in meteor
-mm.ReactiveDict = mm.ReactiveDict.ReactiveDict;
 // Meteor docs show Mongo.Collection
 mm.Mongo = {
   Collection: mm.LocalCollection,
